@@ -1,0 +1,57 @@
+1. Le langage C est inventée au début des année 70.
+Il est succésseur du langage B, lui même succésseur du langage BCPL.
+
+2. Le BCPL est un langage de programmation créé en 1966 à l'université de Cambridge.
+Il est un précurseur des compilateurs scindés en deux parties (front-end et back-end).
+
+3. Il y a effectivement eu plusieurs versions du langages développés au fil des années, la dernière version du langage C est C23.
+
+4. Le langage C a été inventé pour réécrire Unix. Java a repris une syntaxe et une logique similaire au C.
+
+5. Un programme en langage C est structuré en 2 partie : les déclarations et le corps du programme
+
+6. Le préprocesseur en C exécute des directives contenues dans les fichiers sources : celle qui sont au début de programme, précédé par '#'. De plus, il remplace les commentaires par un espace blanc.
+
+7. Makefile est un fichier utilisé par l'outils make pour automatiser la compilsation de programmes (pour éviter de retaper les commandes gcc à chaque modification, en ne compilant que les fichiers nécessaires.
+
+8. Les types basiques en c sont :
+   Les entiers:
+       -char
+       -short
+       -int
+       -long
+       -long long
+   Les décimaux
+       -float
+       -double
+       -long double
+   Les booléens
+        -bool
+
+9. Une structure en c est un type composé, en utilisant le mot-clé struct.
+Il faut utilisé l'opérateur '.' pour accédé à ses membres.
+
+10. Un pointeur est un objet qui contient une adresse mémoire
+
+11. Pour connaitre la taille d'une variable, il faut utiliser l'opérateur sizeof(..).
+
+12. Pour connaitre la valeur des octets d'un entier on peut utiliser le cast via un pointeur d'octet (unsigned char*)
+
+13. Pour connaitre la valeur d'un octet en connaissant son adresse, il faut utiliser pointeur de type char*
+
+14. Les tableaux sont stocké dans un bloc de mémoire contiguë.
+
+15. Les tableaux à 2 dimensions sont stocké de deux manières : en statique ou en dynamique(allocation via malloc)
+
+16. L'ordre de stockage d'un entier en c dépend de l'architecture matérielle du processeur. Il y a deux grands mode connu : little endian ou big endian.
+
+17. Les chaines de caractères en c sont des tableaux de caractères et la dernière case du tableau est un caractère nul spécial '\0'.
+
+18. Oui les chaines de caractères en c permettent de stocker de l'UTF8.
+
+19. Un débogueur est un logiciel informatique qui aide les développeurs à trouver, analyser et corriger leur erreurs.
+Exemple de débogueur :
+	-en C : GNU Debugger
+	-en java : jdb
+Ou les débogueurs intégrés dans les IDE graphiques.
+
