@@ -1,0 +1,15 @@
+ctrl x f Ouvrir/Créer un fichier
+ctrl x s sauvegarder un fichier
+ctrl x w Enregistre sous
+ctrl x c fermer emacs
+ctrl g annule une commande en cours
+ctri x i insert ou il à le curseur
+ctrl a / ctrl e aller au début / à la fin de la ligne
+ctrl l recentrer autour du curseur
+ctrl d = "suppr"
+ctrl k couper la ligne
+ctrl y coller le texte
+
+ctrl xb affiche la liste des buffers ouverts
+ctrl x b change de buffer (nom)
+ctrl x k ferme un buffer
