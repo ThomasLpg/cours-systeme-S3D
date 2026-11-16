@@ -13,3 +13,5 @@ ctrl y coller le texte
 ctrl xb affiche la liste des buffers ouverts
 ctrl x b change de buffer (nom)
 ctrl x k ferme un buffer
+
+Tutoriel emacs : M-x manual-entry 

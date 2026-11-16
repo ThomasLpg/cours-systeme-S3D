@@ -1,0 +1,7 @@
+Question 1 :
+./essai_variables.sh non
+source essai_variables.sh oui
+bash essai_variables.sh non
+. essai_variables.sh oui
+
+Question 3 : Oui mais la commande cd s'éxecutera que dans le programme lui même, quand il aura terminé, dans le terminal, on ne se sera pas déplacé de dossier. 
