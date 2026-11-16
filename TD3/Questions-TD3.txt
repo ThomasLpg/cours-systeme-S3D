@@ -69,6 +69,7 @@ C'est une variable qui stocke une adresse mémoire. On peut faire de l'arithmét
 --> pb n'est pas déclaré comme un pointeur, donc c'est un entier.
 
 AllocationVariableC :
+
 Avec la première décommentation :
 36390:   ./var1
 00005b7763fff000      4K r---- var1
@@ -130,3 +131,9 @@ ffffffffff600000      4K --x--   [ anon ]
  total            18200K
 
 taille en mémoire : 18200Ko.
+
+Tas_C_v1 :
+
+Question: la procédure free fonctionne-t-elle bien ? Justifiez votre réponse.
+
+Oui car on retrouve bien la même adresse mémoire (l'écart ne change pas entre pid1 et pid2). Pour tester, on peut enlever le free(), ce qu'on obtient c'est un écart entre pid1 et pid2 différent car l'adresse alloué a pid2 en fin de code est différente.

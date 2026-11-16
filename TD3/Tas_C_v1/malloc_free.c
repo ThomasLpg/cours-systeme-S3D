@@ -14,7 +14,7 @@ int main() {
   printf("pi1=%p et pi2=%p distance = %zu\n", pi1, pi2, ((char*)pi2) - ((char*)pi1));
   
   // On redonne pi2:
-  free(pi2);
+  // free(pi2);
   // On re-malloc pi2 et si le free marche, on retrouve la même adresse mémoire:
   pi2 = malloc(sizeof(int));
   printf("pi1=%p et pi2=%p distance = %zu\n", pi1, pi2, ((char*)pi2) - ((char*)pi1));
