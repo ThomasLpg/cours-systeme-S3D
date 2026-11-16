@@ -1,0 +1,132 @@
+1/Comment la mémoire est-elle organisée dans un processus linux ?
+Elle est divisée en plusieurs segments : Text (code machine), Data/BSS (variables globales/statiques), Heap (tas, allocation dynamique), Stack (pile, variables locales) et l'espace noyau.
+
+2/Le code source d'un programme est-il en mémoire ? où ?
+Non, c'est le code compilé qui est chargé dans le segment Text (en lecture seule).
+
+3/Les variables d'un programme sont-elles en mémoire ? où ?
+Oui. Les variables globales/statiques vont dans Data (initialisées) ou BSS (non initialisées). Les variables locales vont dans la Stack (pile).
+
+4/Les variables sont-elles stockées de manière permanente ?
+Non, la mémoire vive (RAM) est volatile : tout est effacé à la fin du processus. En revanche, les variables globales/statiques persistent pendant toute la durée d'exécution du programme.
+
+5/Y a-t-il des zones mémoire temporaires ?
+Oui, la Stack (pile) pour les appels de fonctions et le Heap (tas) pour l'allocation dynamique.
+
+6/Comment les variables des fonctions sont-elles gérées ?
+Elles sont empilées dans un stack frame lors de l'appel de la fonction et automatiquement détruites (dépilées) dès le return.
+
+7/Comment définir un tableau de taille fixe dans une fonction ?
+int tab[nbVoulu]; 
+
+8/Comment définir un tableau dont on ne connaît pas la taille d'avance ?
+On utilise un pointeur et l'allocation dynamique : int *tab = malloc(n * sizeof(int));
+
+9/Qu'est-ce qu'une allocation statique ?
+Réservation de mémoire de taille fixe décidée à la compilation, gérée automatiquement (ex : int x = 5;).
+
+10/Qu'est-ce qu'une allocation dynamique ?
+Réservation manuelle de mémoire pendant l'exécution du programme, permettant d'adapter la taille selon les besoins.
+
+11/Comment s'appelle la zone où se fait l'allocation dynamique ?
+Le tas.
+
+12/Où est cette zone ?
+Dans l'espace d'adressage virtuel du processus, juste au-dessus des segments Data/BSS, et elle grandit vers les adresses hautes (à l'opposé de la pile).
+
+13/Quelles sont les tailles des zones d'allocation statique et dynamique ?
+La Stack est très limitée (souvent 8 Mo par défaut sous Linux). Le Heap est beaucoup plus vaste, limité uniquement par la RAM disponible et l'architecture (32/64 bits).
+
+14/Comment s'utilise la fonction malloc ?
+Prend un nombre d'octets en paramètre et renvoie un pointeur void* vers la zone allouée (ou NULL en cas d'échec). Ex : int *p = malloc(sizeof(int));
+
+15/Comment s'utilise la fonction free ?
+Libère la mémoire allouer pour éviter les fuites mémoire. Ex : free(p); p = NULL;.
+
+16/Comment accéder à la mémoire allouée ?
+Par déréférencement du pointeur (*p = 42;) ou par indexation comme un tableau (tab[0] = 42;).
+
+17/Combien peut-on allouer de mémoire ?
+Théoriquement jusqu'à la totalité de la mémoire virtuelle/physique disponible sur le système, tant que malloc ne renvoie pas NULL.
+
+18/Peut-on créer des variables de cette manière ?
+Je n'ai pas comprit la question.
+
+19/Qu'est-ce qu'un pointeur ? peut-on faire des opérations sur les pointeurs ?
+C'est une variable qui stocke une adresse mémoire. On peut faire de l'arithmétique de pointeurs, incrémentation (p++), comparaison (p1 == p2) ou soustraction entre deux pointeurs du même tableau.
+
+20/Si p est un pointeur, que vaut p+1 ? qu'est-ce que * et & ?
+
+    p + 1 : avance à l'adresse de l'élément suivant (ajoute 1 * sizeof(*p) octets).
+    * : opérateur de déréférencement (accède à la valeur pointée par l'adresse).
+    & : opérateur d'adresse (récupère l'adresse mémoire d'une variable).
+
+21/Est-ce que pb est un pointeur vers int ? (Question tableau) :
+	int *pa, pb;
+	int a;
+	pa = &a;
+	pa=pa+1;
+--> pb n'est pas déclaré comme un pointeur, donc c'est un entier.
+
+AllocationVariableC :
+Avec la première décommentation :
+36390:   ./var1
+00005b7763fff000      4K r---- var1
+00005b7764000000      4K r-x-- var1
+00005b7764001000      4K r---- var1
+00005b7764002000      4K r---- var1
+00005b7764003000      4K rw--- var1
+00005b7764004000   7812K rw---   [ anon ]
+00005b77867fa000    132K rw---   [ anon ]
+000072b351600000    160K r---- libc.so.6
+000072b351628000   1568K r-x-- libc.so.6
+000072b3517b0000    316K r---- libc.so.6
+000072b3517ff000     16K r---- libc.so.6
+000072b351803000      8K rw--- libc.so.6
+000072b351805000     52K rw---   [ anon ]
+000072b351880000     12K rw---   [ anon ]
+000072b351898000      8K rw---   [ anon ]
+000072b35189a000     16K r----   [ anon ]
+000072b35189e000      8K r----   [ anon ]
+000072b3518a0000      8K r-x--   [ anon ]
+000072b3518a2000      4K r---- ld-linux-x86-64.so.2
+000072b3518a3000    172K r-x-- ld-linux-x86-64.so.2
+000072b3518ce000     40K r---- ld-linux-x86-64.so.2
+000072b3518d8000      8K r---- ld-linux-x86-64.so.2
+000072b3518da000      8K rw--- ld-linux-x86-64.so.2
+00007fffed28b000    132K rw---   [ pile  ]
+ffffffffff600000      4K --x--   [ anon ]
+ total            10504K
+
+taille en mémoire : 10504Ko
+
+Avec la deuxième décommentation :
+42613:   ./var2
+00006213f49e0000      4K r---- var2
+00006213f49e1000      4K r-x-- var2
+00006213f49e2000      4K r---- var2
+00006213f49e3000      4K r---- var2
+00006213f49e4000      4K rw--- var2
+00006213f49e5000   7812K rw---   [ anon ]
+00006213fc152000    132K rw---   [ anon ]
+000073061b400000    160K r---- libc.so.6
+000073061b428000   1568K r-x-- libc.so.6
+000073061b5b0000    316K r---- libc.so.6
+000073061b5ff000     16K r---- libc.so.6
+000073061b603000      8K rw--- libc.so.6
+000073061b605000     52K rw---   [ anon ]
+000073061b799000     12K rw---   [ anon ]
+000073061b7b1000      8K rw---   [ anon ]
+000073061b7b3000     16K r----   [ anon ]
+000073061b7b7000      8K r----   [ anon ]
+000073061b7b9000      8K r-x--   [ anon ]
+000073061b7bb000      4K r---- ld-linux-x86-64.so.2
+000073061b7bc000    172K r-x-- ld-linux-x86-64.so.2
+000073061b7e7000     40K r---- ld-linux-x86-64.so.2
+000073061b7f1000      8K r---- ld-linux-x86-64.so.2
+000073061b7f3000      8K rw--- ld-linux-x86-64.so.2
+00007ffd99fe1000   7828K rw---   [ pile  ]
+ffffffffff600000      4K --x--   [ anon ]
+ total            18200K
+
+taille en mémoire : 18200Ko.
