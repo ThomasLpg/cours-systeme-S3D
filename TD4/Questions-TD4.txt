@@ -1,0 +1,56 @@
+1/Qu'est-ce que la récursion ?
+C'est une technique de programmation où une fonction s'appelle elle-même pour résoudre un problème, jusqu'à atteindre la condition d'arrêt.
+
+2/Qu'est-ce que la récursion terminale ?
+C'est une récursion où l'appel récursif est la toute dernière instruction exécutée par la fonction.
+
+3/À quoi sert la récursion ?
+Elle permet d'écrire du code plus court, pour traiter des algorithmes  comme le parcours d'arbres, de graphes, le tri rapide ou les algorithmes "diviser pour régner".
+
+4/Est-ce que tous les langages de programmation permettent de faire de la récursion ?
+Non, certains ancien langage ou bas niveau ne la supportent pas.
+
+5/Si non, trouvez un exemple de langage qui n'a pas de récursion :
+Le COBOL.
+
+6/Peut-on transformer un programme itératif en programme récursif ?
+Oui. Toute boucle peut être réécrite sous forme d'une fonction récursive en passant les variables de boucle en paramètres.
+
+7/Peut-on faire l'inverse ?
+Oui. Tout algorithme récursif peut être transformé en version itérative en utilisant explicitement une pile pour mémoriser les états intermédiaires.
+
+8/La récursion ralentit-elle un programme ?
+En général oui, car chaque appel récursif a un coût supplémentaire au processeur.
+
+9/A-t-elle un impact sur la mémoire ?
+Oui. Chaque appel imbriqué consomme de l'espace sur la pile d'exécution. Si la récursion est trop profonde un Stack Overflow.
+
+10/Comment la récursivité est-elle gérée par le compilateur ?
+Le compilateur génère des instructions qui créent un nouveau stack frame à chaque appel pour isoler les paramètres, les variables locales et l'adresse de retour.
+
+11/Si une fonction se rappelle elle-même, que deviennent les variables de la première fonction ?
+Elles restent tel quel dans leur propre stack frame en mémoire. Le nouvel appel crée ses propres copies indépendantes de ces variables au sommet de la pile, et les anciennes sont retrouvées intactes une fois l'appel enfant terminé.
+
+
+Manipulation 1:
+
+Avant manipulation 
+
+compteur = 32373        distance = 517968
+
+Avec 3 variables en plus : 
+
+compteur = 25912        distance = 518240
+
+Avec 10 variables en plus : 
+
+compteur = 16186        distance = 517952
+
+Manipulation 2:
+
+gcc -O2 : boucle infinie
+gcc -O3 : idem
+
+
+
+
