@@ -61,3 +61,6 @@ grep --no-filename --color=always -o -E '[+-] *[0-9]{19,} +' -R /usr/include
 Dans le répertoire /usr/include, on cherche un fichier dans lequel apparait un nombre avec plus de 19 chiffres dans celui-ci, on affichera uniquement la chaine trouvé (-o) sans affiché le nom du fichier dans lequel il apparait (--no-filename).
 
 
+fichier_test.txt
+
+grep --color=always -E '[+-]?[     ]? *[0-9]+' fichier_test.txt
