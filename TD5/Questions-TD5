@@ -1,0 +1,63 @@
+1/qu'est-ce qu'un langage régulier ?
+C'est un ensemble de mots reconnu par un automate fini. 
+
+2/qu'est-ce qu'un langage rationnel ?
+C'est un langage qu'on peut construire à partir de langages finis avec l'union, la concaténation et l'étoile de Kleene.
+
+
+3/donnez un exemple simple de langage qui n'est pas régulier ;
+L'ensemble des mots {anbn∣n≥0}. Un automate fini n'a pas assez de mémoire pour compter un nombre arbitrairement grand de a
+.
+4/comment définit-on les expressions régulières de base avec « + », « . » et « * » ?
++ : le choix / l'union.
+
+. : la concaténation.
+
+* : l'étoile de Kleene, zéro répétition ou plus.
+
+
+5/y a-t-il un lien entre les langages réguliers et les expressions régulières ?
+C'est la même famille de langages : tout langage décrit par une expression régulière est régulier, et tout langage régulier peut s'écrire avec une expression régulière.
+
+
+6/y a-t-il d'autres symboles couramment utilisés dans les expressions régulières de base ?
+L'ensemble vide 
+Les parenthèses pour grouper et changer les priorités.
+
+
+7/qui a inventé les expressions régulières et quand ?
+Le mathématicien Stephen Cole Kleene les a introduites dans les années 1950 pour décrire les réseaux neuronaux et les langages réguliers.
+
+
+8/à quoi servent les expressions régulières ?
+Elles servent à chercher, vérifier, extraire ou remplacer du texte selon un motif. Par exemple, vérifier le format d'une adresse e-mail.
+
+
+9/il y a différentes sortes d'expressions régulières, mais en quoi diffèrent-elles ?
+
+   - simple regular expressions ;
+   forme historique/de base avec peu d'opérateurs et des règles simples 
+
+   - POSIX basic regular expressions ;
+   standard POSIX où certains caractères comme +, ?, | et les parenthèses doivent être échappés avec \ pour avoir leur sens d'opérateur
+
+   - POSIX extended regular expressions.
+   standard POSIX plus souple où +, ?, |, ( et ) fonctionnent directement sans \
+
+
+
+RegExpMotLong : 
+
+man grep | grep --color=always -E '[a-zA-Z]{15,16}' : 
+
+MERCHANTABILITY ; implementations
+
+RegExpInt : 
+
+Exercice 1: Décrivez précisément ce que fait la commande suivante:
+
+grep --no-filename --color=always -o -E '[+-] *[0-9]{19,} +' -R /usr/include
+
+Dans le répertoire /usr/include, on cherche un fichier dans lequel apparait un nombre avec plus de 19 chiffres dans celui-ci, on affichera uniquement la chaine trouvé (-o) sans affiché le nom du fichier dans lequel il apparait (--no-filename).
+
+
